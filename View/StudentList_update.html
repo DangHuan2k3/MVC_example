@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Danh sách các sinh viên</h2>
+    <?php
+    for ($i = 1; $i <= sizeof($students); $i++) {
+    ?>
+        <p>
+            <?php echo $i ?>. <a href="?mod2='1'&stdid=<?php echo $students[$i]->id ?>">
+                <?php echo $students[$i]->name ?>
+            </a>
+        </p>
+        <p><b>Tuổi: </b>
+            <?php echo $students[$i]->age ?>
+        </p>
+        <p><b>Hiện đang học: </b>
+            <?php echo $students[$i]->university ?>
+        </p>
+    <?php
+    }
+    ?>
+
+    <a href="javascript: history.go (-1)">Go Back</a>
+
+</body>
+
+</html>

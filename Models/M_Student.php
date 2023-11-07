@@ -24,11 +24,8 @@ class Model_Student
             $name = $row["name"];
             $university = $row["university"];
 
-            while ($i != $id) {
-                $i++;
-            }
 
-            $students[$i++] = new Entity_Student($id, $name, $age, $university);
+            $students[++$i] = new Entity_Student($id, $name, $age, $university);
         }
 
         return $students;
@@ -36,8 +33,19 @@ class Model_Student
 
     public function getStudent($id)
     {
-        $allStudents = $this->getAllStudents();
-        return $allStudents[$id];
+        $link = mysqli_connect("localhost", "root", "") or die("Khong the ket noi den CSDL MySQL");
+
+        mysqli_select_db($link, "dulieu");
+
+        $query = "select * from sinhvien where ID = $id";
+
+        $result = mysqli_query($link, $query);
+
+        $row = mysqli_fetch_assoc($result);
+
+        $student = new Entity_Student($row['ID'], $row['name'], $row['age'], $row['university']);
+
+        return $student;
     }
 
     public function addStudent(Entity_Student $student)
@@ -85,7 +93,11 @@ class Model_Student
 
         mysqli_select_db($link, "dulieu");
 
-        $query = "SELECT * FROM `sinhvien` WHERE " . $field . " LIKE '%" . $value . "%'";
+        if($field !== 'ID')
+            $query = "SELECT * FROM `sinhvien` WHERE " . $field . " LIKE '%" . $value . "%'";
+        else
+            $query = "SELECT * FROM `sinhvien` WHERE " . $field . " LIKE '" . $value . "'";
+
         echo $query;
         $result = mysqli_query($link, $query);
         $i = 0;

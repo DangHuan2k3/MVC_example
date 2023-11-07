@@ -30,7 +30,7 @@ class Controller_Student
                         } else {
                             echo 'Bug ha';
                         }
-                    }
+                    } 
                     break;
                 case 'filter': {
                         $modelStudent = new Model_Student();

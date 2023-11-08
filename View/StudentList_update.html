@@ -12,17 +12,17 @@
     <?php
     for ($i = 1; $i <= sizeof($students); $i++) {
     ?>
-        <p>
-            <?php echo $i ?>. <a href="?mod2='1'&stdid=<?php echo $students[$i]->id ?>">
-                <?php echo $students[$i]->name ?>
-            </a>
-        </p>
-        <p><b>Tuổi: </b>
-            <?php echo $students[$i]->age ?>
-        </p>
-        <p><b>Hiện đang học: </b>
-            <?php echo $students[$i]->university ?>
-        </p>
+    <p>
+        <?php echo $i ?>. <a href="?mod2='1'&stdid=<?php echo $students[$i]->id ?>">
+            <?php echo $students[$i]->name ?>
+        </a>
+    </p>
+    <p><b>Tuổi: </b>
+        <?php echo $students[$i]->age ?>
+    </p>
+    <p><b>Hiện đang học: </b>
+        <?php echo $students[$i]->university ?>
+    </p>
     <?php
     }
     ?>

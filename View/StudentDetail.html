@@ -9,15 +9,26 @@
 
 <body>
     <h2>Chi tiết sinh viên</h2>
-    <p><b>Tên sinh viên: </b>
-        <?php echo $student->name ?>
-    </p>
-    <p><b>Tuổi: </b>
-        <?php echo $student->age ?>
-    </p>
-    <p><b>Hiện đang học: </b>
-        <?php echo $student->university ?>
-    </p>
+    <table border="1">
+        <tr>
+            <td><label for="name"><b>Tên sinh viên</b></label></td>
+            <td>
+                <?php echo $student->name ?>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="age"><b>Tuổi</b></label></td>
+            <td>
+                <?php echo $student->age ?>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="university"><b>Trường đại học</b></label></td>
+            <td>
+                <?php echo $student->university ?>
+            </td>
+        </tr>
+    </table>
 
     <a href="javascript: history.go (-1)">Go Back</a>
 </body>

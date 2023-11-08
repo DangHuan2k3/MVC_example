@@ -9,17 +9,33 @@
 
 <body>
     <h2>Danh sách các sinh viên</h2>
-    <?php
-    for ($i = 1; $i <= sizeof($students); $i++) {
-    ?>
-    <p>
-        <?php echo $i ?>. <a href="?stdid=<?php echo $students[$i]->id ?>">
-            <?php echo $students[$i]->name ?>
-        </a>
-    </p>
-    <?php
-    }
-    ?>
+    <table border="1">
+        <tr>
+            <th>STT</th>
+            <th>Tên sinh viên</th>
+        </tr>
+        <?php
+
+        for ($i = 1; $i <= sizeof($students); $i++) {
+        ?>
+
+        <!-- <p>
+                <?php echo $i ?>. <a href="?stdid=<?php echo $students[$i]->id ?>">
+                    <?php echo $students[$i]->name ?>
+                </a>
+            </p> -->
+        <tr>
+            <td>
+                <?php echo $i ?>
+            </td>
+            <td><a href="?stdid=<?php echo $students[$i]->id ?>">
+                    <?php echo $students[$i]->name ?>
+            </td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
 
     <a href="javascript: history.go (-1)">Go Back</a>
 

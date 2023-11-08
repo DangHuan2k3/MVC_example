@@ -56,7 +56,13 @@ class Model_Student
 
         $query = "INSERT INTO `sinhvien`(`ID`, `name`, `age`, `university`) VALUES ('" . $student->id . "','" . $student->name . "','" . $student->age . "','" . $student->university . "')";
         echo $query;
-        $result = mysqli_query($link, $query);
+        try {
+            //code...
+            $result = mysqli_query($link, $query);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return -1;
+        }
 
         return $result;
     }
@@ -93,7 +99,7 @@ class Model_Student
 
         mysqli_select_db($link, "dulieu");
 
-        if($field !== 'ID')
+        if ($field !== 'ID')
             $query = "SELECT * FROM `sinhvien` WHERE " . $field . " LIKE '%" . $value . "%'";
         else
             $query = "SELECT * FROM `sinhvien` WHERE " . $field . " LIKE '" . $value . "'";

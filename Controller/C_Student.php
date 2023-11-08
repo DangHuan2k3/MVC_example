@@ -15,7 +15,7 @@ class Controller_Student
                         if ($result == 1) {
                             $this->allStudents();
                         } else {
-                            echo 'Bug ha';
+                            echo 'Thêm sinh viên thất bại.';
                         }
                     }
                     break;
@@ -54,6 +54,7 @@ class Controller_Student
 
         if (isset($_REQUEST['mod1'])) {
             $modelStudent = new Model_Student();
+            $students = $this->getAllIDSV();
             include_once('../View/StudentForm.html');
 
             return;
@@ -110,6 +111,13 @@ class Controller_Student
 
         $students = $modelStudent->getAllStudents();
         include_once('../View/StudentList.html');
+    }
+
+    private function getAllIDSV()
+    {
+        $modelStudent = new Model_Student();
+
+        return $modelStudent->getAllStudents();
     }
 }
 

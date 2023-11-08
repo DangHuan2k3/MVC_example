@@ -5,15 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function checkValidIDSV() {
+            var IDSVs = [];
+            <?php
+            for ($i = 1; $i <= sizeof($students); $i++) {
+            ?>
+                IDSVs.push('<?php echo $students[$i]->id ?>')
+            <?php
+            }
+            ?>
+
+            var IDSVnew = document.formChenSV.ID.value;
+            console.log(IDSVnew);
+
+            if (IDSVs.includes(IDSVnew)) {
+                alert('Tồn tại sinh vien có ID này rồi');
+                document.formChenSV.ID.value = "";
+                document.formChenSV.ID.focus();
+            }
+
+        }
+    </script>
 </head>
 
 <body>
-    <form action="../Controller/C_Student.php?mod1='1'&action=add" method="post">
+    <form action="../Controller/C_Student.php?mod1='1'&action=add" method="post" name="formChenSV">
         <caption align="center"><b>Nhập thông tin sinh viên</b></caption>
         <table>
             <tr>
                 <td><label for="IDSV"> Nhập ID sinh viên </label></td>
-                <td><input type="text" name="ID" placeholder="VD: 1, 2, ..."></td>
+                <td><input type="text" name="ID" placeholder="VD: 1, 2, ..." onblur="checkValidIDSV()"></td>
             </tr>
             <tr>
                 <td><label for="name"> Nhập tên sinh viên </label></td>

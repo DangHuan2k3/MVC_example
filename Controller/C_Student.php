@@ -30,7 +30,7 @@ class Controller_Student
                         } else {
                             echo 'Bug ha';
                         }
-                    } 
+                    }
                     break;
                 case 'filter': {
                         $modelStudent = new Model_Student();
@@ -80,7 +80,6 @@ class Controller_Student
 
             if (isset($_REQUEST['stdid'])) {
                 $student = $modelStudent->deleteStudent($_GET['stdid']);
-                $this->allStudents();
             }
 
             $students = $modelStudent->getAllStudents();

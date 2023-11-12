@@ -8,24 +8,29 @@
 </head>
 
 <body>
-    <form action="../Controller/C_Student.php?mod2='1'&action=update" method="post">
+    <form action="../Controller/C_Student.php?mod2='1'&action=update" method="post" name="formChenSV"
+        onsubmit="submitForm(event)">
         <caption align="center"><b>Cập nhật thông tin sinh viên</b></caption>
         <table>
             <tr>
-                <td><label for="IDSV"> Nhập ID sinh viên </label></td>
-                <td><input type="text" name="ID" placeholder="VD: 1, 2, ..." readonly value="<?php echo $student->id ?>"></td>
+                <td><label for="IDSV"> ID sinh viên </label></td>
+                <td><input type="text" name="ID" placeholder="VD: 1, 2, ..." readonly
+                        value="<?php echo $student->id ?>"></td>
             </tr>
             <tr>
                 <td><label for="name"> Nhập tên sinh viên </label></td>
-                <td><input type="text" name="name" placeholder="VD: Nguyễn Văn A" value="<?php echo $student->name ?>"></td>
+                <td><input type="text" name="name" placeholder="VD: Nguyễn Văn A" value="<?php echo $student->name ?>">
+                </td>
             </tr>
             <tr>
                 <td><label for="IDSV"> Nhập tuổi sinh viên </label></td>
-                <td><input type="text" name="age" placeholder="VD: 19, 20, ..." value="<?php echo $student->age ?>"></td>
+                <td><input type="text" name="age" placeholder="VD: 19, 20, ..." value="<?php echo $student->age ?>">
+                </td>
             </tr>
             <tr>
                 <td><label for="IDSV"> Nhập tên trường đại học </label></td>
-                <td><input type="text" name="university" placeholder="VD: DUT, DTU, ..." value="<?php echo $student->university ?>"></td>
+                <td><input type="text" name="university" placeholder="VD: DUT, DTU, ..."
+                        value="<?php echo $student->university ?>"></td>
             </tr>
         </table>
 
@@ -36,5 +41,50 @@
     <a href="javascript: history.go (-1)">Go Back</a>
 
 </body>
+
+<script>
+    function checkValidForm() {
+        var maNV = document.formChenSV.ID.value;
+
+        if (maNV === "") {
+            alert('chưa nhập mã sinh viên');
+            return false;
+        }
+
+        var hoTen = document.formChenSV.name.value;
+
+        if (hoTen === "") {
+            alert('chưa nhập họ tên cho sinh viên');
+            return false;
+        }
+
+        var age = document.formChenSV.age.value;
+
+        if (age === "") {
+            alert('chưa nhập tuổi cho sinh viên');
+            return false;
+        }
+
+        var university = document.formChenSV.university.value;
+
+        if (university === "") {
+            alert('chưa nhập trường đại học cho sinh viên');
+            return false;
+
+        }
+
+        return true;
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        if (!checkValidForm()) {
+            return;
+        }
+
+        document.formChenSV.submit();
+    }
+</script>
 
 </html>

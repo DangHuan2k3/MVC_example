@@ -5,32 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function checkValidIDSV() {
-            var IDSVs = [];
-            <?php
-            for ($i = 1; $i <= sizeof($students); $i++) {
-            ?>
-                IDSVs.push('<?php echo $students[$i]->id ?>')
-            <?php
-            }
-            ?>
 
-            var IDSVnew = document.formChenSV.ID.value;
-            console.log(IDSVnew);
-
-            if (IDSVs.includes(IDSVnew)) {
-                alert('Tồn tại sinh vien có ID này rồi');
-                document.formChenSV.ID.value = "";
-                document.formChenSV.ID.focus();
-            }
-
-        }
-    </script>
 </head>
 
 <body>
-    <form action="../Controller/C_Student.php?mod1='1'&action=add" method="post" name="formChenSV">
+    <form action="../Controller/C_Student.php?mod1='1'&action=add" method="post" name="formChenSV" onsubmit="submitForm(event)">
         <caption align="center"><b>Nhập thông tin sinh viên</b></caption>
         <table>
             <tr>
@@ -58,5 +37,50 @@
     <a href="javascript: history.go (-1)">Go Back</a>
 
 </body>
+
+<script>
+    function checkValidForm() {
+        var maNV = document.formChenSV.ID.value;
+
+        if (maNV === "") {
+            alert('chưa nhập mã sinh viên');
+            return false;
+        }
+
+        var hoTen = document.formChenSV.name.value;
+
+        if (hoTen === "") {
+            alert('chưa nhập họ tên cho sinh viên');
+            return false;
+        }
+
+        var age = document.formChenSV.age.value;
+
+        if (age === "") {
+            alert('chưa nhập tuổi cho sinh viên');
+            return false;
+        }
+
+        var university = document.formChenSV.university.value;
+
+        if (university === "") {
+            alert('chưa nhập trường đại học cho sinh viên');
+            return false;
+
+        }
+
+        return true;
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        if (!checkValidForm()) {
+            return;
+        }
+
+        document.formChenSV.submit();
+    }
+</script>
 
 </html>

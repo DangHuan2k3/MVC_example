@@ -55,6 +55,30 @@ class Controller_Student
         if (isset($_REQUEST['mod1'])) {
             $modelStudent = new Model_Student();
             $students = $this->getAllIDSV();
+?>
+            <script>
+                function checkValidIDSV() {
+                    var IDSVs = [];
+                    <?php
+                    for ($i = 1; $i <= sizeof($students); $i++) {
+                    ?>
+                        IDSVs.push('<?php echo $students[$i]->id ?>')
+                    <?php
+                    }
+                    ?>
+
+                    var IDSVnew = document.formChenSV.ID.value;
+                    console.log(IDSVnew);
+
+                    if (IDSVs.includes(IDSVnew)) {
+                        alert('Tồn tại sinh vien có ID này rồi');
+                        document.formChenSV.ID.value = "";
+                        document.formChenSV.ID.focus();
+                    }
+
+                }
+            </script>
+<?php
             include_once('../View/StudentForm.html');
 
             return;
